@@ -10,8 +10,8 @@ const ibmPlexSerif = IBM_Plex_Serif({
 })
 
 export const metadata: Metadata = {
-  title: "A-Banking",
-  description: "A-Banking은 현대화된 뱅킹 플랫폼입니다.",
+  title: "Banking",
+  description: "Banking은 현대화된 뱅킹 플랫폼입니다.",
   icons: {
     icon: '/icons/logo.svg'
   }
