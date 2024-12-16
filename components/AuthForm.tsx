@@ -22,6 +22,7 @@ import CustomInput from './CustomInput';
 import { authFormSchema } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
 import {  getLoggedInUser, signIn, signUp } from '@/lib/actions/user.actions';
+import PlaidLink from './PlaidLink';
  
 
 const AuthForm = ({type}:{type: string}) => {
@@ -45,7 +46,19 @@ const AuthForm = ({type}:{type: string}) => {
         try {
             // Sign up with Appwrite & create plain link token
             if(type === 'sign-up'){
-                const newUser = await signUp(data);
+                const userData = {
+                    firstName: data.firstName!,
+                    lastName: data.lastName!,
+                    address1: data.address1!,
+                    city: data.city!,
+                    state: data.state!,
+                    postalCode: data.postalCode!,
+                    dateOfBirth: data.dateOfBirth!,
+                    ssn: data.ssn!,
+                    email: data.email,
+                    password: data.password
+                }
+                const newUser = await signUp(userData);
                 setUser(newUser);
             }
 
@@ -96,7 +109,7 @@ const AuthForm = ({type}:{type: string}) => {
             </header>
             {user ? (
                 <div className="flex flex-col gap-4">
-                    {/*PLAID LINK*/}
+                    <PlaidLink user={user} variant="primary" />
                 </div>
             ):(
                 <>    
@@ -105,8 +118,8 @@ const AuthForm = ({type}:{type: string}) => {
                             {type === "sign-up" && (
                                 <>
                                     <div className="flex gap-4">
-                                        <CustomInput control={form.control} name='firstName' label="성" placeholder='성을 입력하세요' />
-                                        <CustomInput control={form.control} name='lastName' label="이름" placeholder='이름을 입력하세요' />
+                                        <CustomInput control={form.control} name='lastName' label="성" placeholder='성을 입력하세요' />
+                                        <CustomInput control={form.control} name='firstName' label="이름" placeholder='이름을 입력하세요' />
                                     </div>
                                     <CustomInput control={form.control} name='address1' label="주소" placeholder='주소를 입력하세요' />
                                     <CustomInput control={form.control} name='city' label="City" placeholder='City를 입력하세요' />
