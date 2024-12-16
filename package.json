@@ -21,6 +21,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "dwolla-v2": "^3.4.0",
+    "i18next": "^24.1.0",
     "lucide-react": "^0.374.0",
     "next": "^14.2.20",
     "node-appwrite": "^12.0.1",
@@ -31,10 +32,12 @@
     "react-countup": "^6.5.3",
     "react-dom": "^18",
     "react-hook-form": "^7.54.1",
+    "react-i18next": "^15.2.0",
     "react-plaid-link": "^3.5.1",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.24.1"
+    "zod": "^3.24.1",
+    "zod-i18n-map": "^2.27.0"
   },
   "devDependencies": {
     "@types/node": "^20",

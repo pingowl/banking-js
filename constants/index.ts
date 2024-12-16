@@ -7,7 +7,7 @@ export const sidebarLinks = [
   {
     imgURL: "/icons/dollar-circle.svg",
     route: "/my-banks",
-    label: "내 은행",
+    label: "내 계좌",
   },
   {
     imgURL: "/icons/transaction.svg",
