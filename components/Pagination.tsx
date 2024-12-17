@@ -31,7 +31,7 @@ export const Pagination = ({ page, totalPages }: PaginationProps) => {
           height={20}
           className="mr-2"
         />
-        Prev
+        이전
       </Button>
       <p className="text-14 flex items-center px-2">
         {page} / {totalPages}
@@ -43,7 +43,7 @@ export const Pagination = ({ page, totalPages }: PaginationProps) => {
         onClick={() => handleNavigation("next")}
         disabled={Number(page) >= totalPages}
       >
-        Next
+        다음
         <Image
           src="/icons/arrow-left.svg"
           alt="arrow"

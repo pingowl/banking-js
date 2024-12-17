@@ -34,8 +34,8 @@ const currentTransactions = account?.transactions.slice(
     <div className="transactions">
       <div className="transactions-header">
         <HeaderBox 
-          title="Transaction History"
-          subtext="See your bank details and transactions."
+          title="거래 내역"
+          subtext="계좌 세부정보 및 거래 내역을 확인하세요."
         />
       </div>
 
@@ -52,7 +52,7 @@ const currentTransactions = account?.transactions.slice(
           </div>
           
           <div className='transactions-account-balance'>
-            <p className="text-14">Current balance</p>
+            <p className="text-14">현재 잔액</p>
             <p className="text-24 text-center font-bold">{formatAmount(account?.data.currentBalance)}</p>
           </div>
         </div>
