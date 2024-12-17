@@ -3,12 +3,21 @@ import RightSidebar from "@/components/RightSidebar";
 import TotalBalanceBox from "@/components/TotalBalanceBox";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 import { redirect } from "next/navigation";
+import { getAccount, getAccounts } from '@/lib/actions/bank.actions';
 
 
-const Home = async () => {
+const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
+  const currentPage = Number(page as string) || 1;
   const loggedIn = await getLoggedInUser();
 
-  if (!loggedIn) redirect("/sign-up");
+  const accounts = await getAccounts({ 
+    userId: loggedIn.$id 
+  })
+  if(!accounts) return;
+  
+  const accountsData = accounts?.data;
+  const appwriteItemId = (id as string) || accountsData[0]?.appwriteItemId;
+  const account = await getAccount({ appwriteItemId })
 
   return (
     <section className="home">
@@ -17,14 +26,14 @@ const Home = async () => {
           <HeaderBox 
             type="greeting"
             title="Welcome,"
-            user={loggedIn?.name || 'Guest'}
+            user={loggedIn?.firstName || 'Guest'}
             subtext="계좌와 거래 내역을 편리하게 접근하고 관리할 수 있습니다."
           />
 
           <TotalBalanceBox 
-            accounts={[]}
-            totalBanks={1}
-            totalCurrentBalance={1250}
+            accounts={accountsData}
+            totalBanks={accounts?.totalBanks}
+            totalCurrentBalance={accounts?.totalCurrentBalance}
           />
         </header>
 
@@ -33,8 +42,8 @@ const Home = async () => {
 
       <RightSidebar 
         user={loggedIn}
-        transactions={[]}
-        banks={[{currentBalance: 123.50}, {currentBalance: 500.00}]}
+        transactions={accounts?.transactions}
+        banks={accountsData?.slice(0, 2)}
       />
     </section>
   )
