@@ -17,7 +17,7 @@ export const sidebarLinks = [
   {
     imgURL: "/icons/money-send.svg",
     route: "/payment-transfer",
-    label: "자금 이체",
+    label: "계좌 이체",
   },
 ];
 
